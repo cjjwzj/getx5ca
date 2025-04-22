@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx5_ca/routes/app_pages.dart';
+import 'package:getx5_ca/others/app_translations.dart';
+import 'package:getx5_ca/services/prefs_services.dart';
+import 'package:getx5_ca/services/setting_service.dart';
+import 'package:getx5_ca/app_theme.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'app_title'.tr,
+      locale: Get.deviceLocale,
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.myPages,
+      debugShowCheckedModeBanner: false,
+      fallbackLocale: const Locale('zh', 'CN'), // 默认中文
+      translations: AppTranslations(),
+      binds: [
+        Bind.lazyPut(() => SettingService()),
+        Bind.lazyPut(() => PrefsServices()),
+      ],
+      unknownRoute: AppPages.unknownPage,
+      // 主题配置
+      theme: const AppTheme().light(),
+      darkTheme: const AppTheme().dark(),
+      themeMode: ThemeMode.system,
+    );
+  }
+}
