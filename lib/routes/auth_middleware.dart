@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/route_middleware.dart';
 import 'package:getx5_ca/others/constance.dart';
-import 'package:getx5_ca/services/prefs_services.dart';
+import 'package:getx5_ca/services/prefs_service.dart';
 
 class AuthMiddleware extends GetMiddleware {
   @override
@@ -12,7 +12,7 @@ class AuthMiddleware extends GetMiddleware {
     // await Future.delayed(Duration(milliseconds: 500));
 
     var isLogin =
-        await Get.find<PrefsServices>().getBool(PrefsKey.IS_LOGIN) ?? false;
+        await Get.find<PrefsService>().getBool(PrefsKey.IS_LOGIN) ?? false;
     if (isLogin) {
       return RouteDecoder.fromRoute('/home');
     } else {

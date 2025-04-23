@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx5_ca/routes/app_pages.dart';
 import 'package:getx5_ca/others/app_translations.dart';
-import 'package:getx5_ca/services/prefs_services.dart';
+import 'package:getx5_ca/services/prefs_service.dart';
 import 'package:getx5_ca/services/setting_service.dart';
 import 'package:getx5_ca/app_theme.dart';
+import 'package:getx5_ca/services/wan_api_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       translations: AppTranslations(),
       binds: [
         Bind.lazyPut(() => SettingService()),
-        Bind.lazyPut(() => PrefsServices()),
+        Bind.lazyPut(() => PrefsService()),
+        Bind.lazyPut(() => WanApiService()),
       ],
       unknownRoute: AppPages.unknownPage,
       // 主题配置

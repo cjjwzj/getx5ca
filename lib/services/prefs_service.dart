@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:get/get_instance/src/lifecycle.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PrefsServices extends GetxService {
+class PrefsService extends GetxService {
   final SharedPreferencesAsync _prefs = SharedPreferencesAsync();
 
   @override
