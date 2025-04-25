@@ -13,7 +13,7 @@ class LoginPage extends GetView<LoginController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-         const FlutterLogo(),
+          const FlutterLogo(),
           TextFormField(
             decoration: InputDecoration(
               labelText: 'username'.tr,

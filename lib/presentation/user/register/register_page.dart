@@ -13,7 +13,10 @@ class RegisterPage extends GetView<RegisterController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('register'.tr,style: Get.textTheme.titleLarge,),
+          Text(
+            'register'.tr,
+            style: Get.textTheme.titleLarge,
+          ),
           TextFormField(
             decoration: InputDecoration(
               labelText: 'username'.tr,

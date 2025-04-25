@@ -3,7 +3,7 @@ class LoginReq {
   final String password;
 
   LoginReq({required this.username, required this.password});
-  
+
   /// 将对象转换为JSON格式
   Map<String, dynamic> toJson() {
     return {
@@ -12,4 +12,3 @@ class LoginReq {
     };
   }
 }
-

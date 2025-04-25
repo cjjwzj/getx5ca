@@ -10,7 +10,7 @@ class AppTranslations extends Translations {
 
   // 英文翻译
   Map<String, String> get enUS => {
-        'username': 'Username', 
+        'username': 'Username',
         'password': 'Password',
         'login': 'Login',
         'register': 'Register',
@@ -18,9 +18,6 @@ class AppTranslations extends Translations {
         'remember_me': 'Remember Me',
         'or_login_with': 'Or Login With',
         'or_register_with': 'Or Register With',
-
-
-        
         'app_title': 'Todo App',
         'no_todos': 'No todos yet',
         'add_todo': 'Add Todo',
@@ -55,8 +52,6 @@ class AppTranslations extends Translations {
         'remember_me': '记住我',
         'or_login_with': '或使用',
         'or_register_with': '或注册',
-
-
         'app_title': '待办事项应用',
         'no_todos': '暂无待办事项',
         'add_todo': '添加待办事项',
@@ -80,4 +75,4 @@ class AppTranslations extends Translations {
         'dark': '深色',
         'system': '跟随系统',
       };
-} 
+}

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/routes/route_middleware.dart';
 import 'package:getx5_ca/others/constance.dart';
 import 'package:getx5_ca/services/prefs_service.dart';
 

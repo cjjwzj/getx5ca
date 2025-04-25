@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx5_ca/network/dto/req/login_req.dart';
-import 'package:getx5_ca/others/constance.dart';
 import 'package:getx5_ca/services/wan_api_service.dart';
-import 'package:getx5_ca/services/prefs_service.dart';
 
 class LoginController extends GetxController {
   final userNameController = TextEditingController(text: 'cjjwzj');
@@ -21,7 +19,11 @@ class LoginController extends GetxController {
       password: passwordController.text,
     );
     final response = await _apiService.login(loginReq);
-    Get.log(response.toString());
+    if (response.isSuccess) {
+      Get.toNamed('/home/first');
+    } else {
+      Get.snackbar('error', response.errorMsg);
+    }
   }
 
   // void login() {

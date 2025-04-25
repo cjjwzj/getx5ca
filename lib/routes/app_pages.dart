@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 import 'package:getx5_ca/presentation/about/about_binding.dart';
 import 'package:getx5_ca/presentation/about/about_page.dart';
+import 'package:getx5_ca/presentation/home/first/first_binding.dart';
+import 'package:getx5_ca/presentation/home/first/first_page.dart';
+import 'package:getx5_ca/presentation/home/harmony/harmony_binding.dart';
+import 'package:getx5_ca/presentation/home/harmony/harmony_page.dart';
 import 'package:getx5_ca/presentation/home/home_binding.dart';
 import 'package:getx5_ca/presentation/home/home_page.dart';
 import 'package:getx5_ca/presentation/settings/settings_binding.dart';
@@ -19,6 +23,7 @@ import 'package:getx5_ca/routes/auth_middleware.dart';
 /// 应用页面配置
 class AppPages {
   /// 初始路由
+  /// 不使用/防止未知路由页面无法被识别
   static const INITIAL = '/root';
 
   /// 未知路由
@@ -64,12 +69,25 @@ class AppPages {
       participatesInRootNavigator: true,
       page: () => const SettingsPage(),
       binding: SettingsBinding(),
+     
     ),
     GetPage(
       name: '/home',
       participatesInRootNavigator: true,
       page: () => const HomePage(),
       binding: HomeBinding(),
+      children: [
+        GetPage(
+          name: '/first',
+          page: () => const FirstPage(),
+          binding: FirstBinding(),
+        ),
+        GetPage(
+          name: '/harmony',
+          page: () => const HarmonyPage(),  
+          binding: HarmonyBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: '/about',
