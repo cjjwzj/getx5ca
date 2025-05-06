@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx5_ca/others/web_scroll_behavior.dart';
 import 'package:getx5_ca/routes/app_pages.dart';
 import 'package:getx5_ca/others/app_translations.dart';
 import 'package:getx5_ca/services/prefs_service.dart';
@@ -8,7 +9,6 @@ import 'package:getx5_ca/app_theme.dart';
 import 'package:getx5_ca/services/wan_api_service.dart';
 
 import 'my_route_infomation_parser.dart';
-import 'others/global_state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       routeInformationParser: MyRouteInformationParser(
         initialRoute: AppPages.INITIAL,
       ),
+      scrollBehavior: WebScrollBehavior(),
       title: 'app_title'.tr,
       locale: Get.deviceLocale,
       getPages: AppPages.myPages,

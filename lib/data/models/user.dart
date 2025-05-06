@@ -3,7 +3,7 @@
 /// 包含用户的基本信息，如ID、用户名、昵称等
 class User {
   final bool admin;
-  final List<int> chapterTops;
+  final List<dynamic> chapterTops;
   final int coinCount;
   final List<int> collectIds;
   final String email;
@@ -79,7 +79,7 @@ class User {
   /// 复制并修改当前实例的方法
   User copyWith({
     bool? admin,
-    List<int>? chapterTops,
+    List<dynamic>? chapterTops,
     int? coinCount,
     List<int>? collectIds,
     String? email,
@@ -108,4 +108,7 @@ class User {
       username: username ?? this.username,
     );
   }
+
+
+  
 } 

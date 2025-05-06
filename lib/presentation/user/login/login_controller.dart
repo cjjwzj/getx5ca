@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx5_ca/network/dto/req/login_req.dart';
+import 'package:getx5_ca/services/setting_service.dart';
 import 'package:getx5_ca/services/wan_api_service.dart';
 
 class LoginController extends GetxController {
@@ -20,6 +21,7 @@ class LoginController extends GetxController {
     );
     final response = await _apiService.login(loginReq);
     if (response.isSuccess) {
+      Get.find<SettingService>().user = response.data!.transformToUser();
       Get.toNamed('/home/first');
     } else {
       Get.snackbar('error', response.errorMsg);

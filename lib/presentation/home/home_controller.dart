@@ -19,6 +19,8 @@ class HomeController extends GetxController
   ];
   late TabController tabController;
 
+  var nickname = ''.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -26,6 +28,11 @@ class HomeController extends GetxController
     tabController = TabController(length: tabNames.length, vsync: this);
 
     listenRouteChange();
+  }
+
+  @override
+  void onReady() {
+    nickname.value = Get.find<SettingService>().user.nickname;
   }
 
   void onTabChanged(int value) {

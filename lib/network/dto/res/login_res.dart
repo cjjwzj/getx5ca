@@ -1,3 +1,5 @@
+import 'package:getx5_ca/data/models/user.dart';
+
 class LoginRes {
   bool? admin;
   List<dynamic>? chapterTops;
@@ -96,5 +98,25 @@ class LoginRes {
     data["type"] = type;
     data["username"] = username;
     return data;
+  }
+
+
+  //DTO转化成内部数据模型
+  User transformToUser() {
+    return User(
+      id: id ?? 0,
+      username: username ?? '',
+      nickname: nickname ?? '',
+      email: email ?? '',
+      icon: icon ?? '',
+      publicName: publicName ?? '',
+      token: token ?? '',
+      type: type ?? 0,
+      password: password ?? '',
+      admin: admin ?? false,
+      chapterTops: chapterTops ?? [],
+      coinCount: coinCount ?? 0,
+      collectIds: collectIds ?? [],
+    );
   }
 }
