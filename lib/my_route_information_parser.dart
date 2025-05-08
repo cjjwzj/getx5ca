@@ -22,7 +22,6 @@ class MyRouteInformationParser extends GetInformationParser {
     } else if (location.isEmpty) {
       location = initialRoute;
     }
-    // Get.log('路由解析22: $location');
     Get.find<SettingService>().currentRoute.value = location;
 
     return super.parseRouteInformation(routeInformation);

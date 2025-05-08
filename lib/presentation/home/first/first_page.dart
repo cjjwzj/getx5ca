@@ -9,41 +9,39 @@ class FirstPage extends GetView<FirstPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: Get.height * 0.5),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
+              height: Get.height * 0.4,
               child: Obx(
-                () => CarouselView.weighted(
-                  controller: controller.carouselController,
-
-                  // 每个 item 的权重
-                  flexWeights: const [1, 10, 1],
-                  // 每个 item 的主轴尺寸（比如横向时宽度，纵向时高度）
-                  children: List.generate(controller.banners.length, (index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image:
-                              Image.network(controller.banners[index].imagePath)
-                                  .image,
-                          fit: BoxFit.cover,
+                () => PageView(
+                  controller: controller.pageViewController,
+                  onPageChanged: (index) {
+                    controller.onPageChanged(index);
+                  },
+                  children: controller.banners
+                      .map(
+                        (e) => ClipRRect(
+                          borderRadius: BorderRadius.circular(16.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              controller.onBannerTap(e.url);
+                            },
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Image.network(
+                                e.imagePath,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text(
-                          controller.banners[index].title,
-                          style: TextStyle(
-                              color: Get.theme.secondaryHeaderColor,
-                              fontSize: Get.textTheme.titleLarge?.fontSize ?? 24.0),
-                        ),
-                      ),
-                    );
-                  }),
+                      )
+                      .toList(),
                 ),
               ),
             ),

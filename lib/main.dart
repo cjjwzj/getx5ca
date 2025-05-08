@@ -8,7 +8,7 @@ import 'package:getx5_ca/services/setting_service.dart';
 import 'package:getx5_ca/app_theme.dart';
 import 'package:getx5_ca/services/wan_api_service.dart';
 
-import 'my_route_infomation_parser.dart';
+import 'my_route_information_parser.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
