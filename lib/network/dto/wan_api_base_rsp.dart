@@ -1,23 +1,23 @@
 /// API响应的通用实体类
 /// 
 /// 使用泛型T表示data字段的类型，可以根据不同的API响应灵活使用
-class ApiResponse<T> {
+class WanApiBaseRsp<T> {
   final T? data;
   final int errorCode;
   final String errorMsg;
 
-  const ApiResponse({
+  const WanApiBaseRsp({
     this.data,
     required this.errorCode,
     required this.errorMsg,
   });
 
   // 从JSON映射到实体类的工厂构造函数
-  factory ApiResponse.fromJson(
+  factory WanApiBaseRsp.fromJson(
     Map<String, dynamic> json,
     T Function(Map<String, dynamic> json) fromJsonT,
   ) {
-    return ApiResponse<T>(
+    return WanApiBaseRsp<T>(
       data: json['data'] != null ? fromJsonT(json['data']) : null,
       errorCode: json['errorCode'] as int,
       errorMsg: json['errorMsg'] as String,
@@ -36,8 +36,8 @@ class ApiResponse<T> {
   }
 
   // 创建成功响应的便捷方法
-  static ApiResponse<T> success<T>(T data) {
-    return ApiResponse<T>(
+  static WanApiBaseRsp<T> success<T>(T data) {
+    return WanApiBaseRsp<T>(
       data: data,
       errorCode: 0,
       errorMsg: '',
@@ -45,11 +45,11 @@ class ApiResponse<T> {
   }
 
   // 创建错误响应的便捷方法
-  static ApiResponse<T> error<T>({required int code, required String message, T? data}) {
-    return ApiResponse<T>(
+  static WanApiBaseRsp<T> error<T>({required int errorCode, required String errorMsg, T? data}) {
+    return WanApiBaseRsp<T>(
       data: data,
-      errorCode: code,
-      errorMsg: message,
+      errorCode: errorCode,
+      errorMsg: errorMsg,
     );
   }
 
@@ -57,12 +57,12 @@ class ApiResponse<T> {
   bool get isSuccess => errorCode == 0;
 
   // 复制并修改当前实例的方法
-  ApiResponse<T> copyWith({
+  WanApiBaseRsp<T> copyWith({
     T? data,
     int? errorCode,
     String? errorMsg,
   }) {
-    return ApiResponse<T>(
+    return WanApiBaseRsp<T>(
       data: data ?? this.data,
       errorCode: errorCode ?? this.errorCode,
       errorMsg: errorMsg ?? this.errorMsg,

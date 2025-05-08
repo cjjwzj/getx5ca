@@ -1,6 +1,6 @@
 import 'package:getx5_ca/data/models/user.dart';
 
-class LoginRes {
+class LoginRsp {
   bool? admin;
   List<dynamic>? chapterTops;
   int? coinCount;
@@ -15,7 +15,7 @@ class LoginRes {
   int? type;
   String? username;
 
-  LoginRes(
+  LoginRsp(
       {this.admin,
       this.chapterTops,
       this.coinCount,
@@ -30,7 +30,7 @@ class LoginRes {
       this.type,
       this.username});
 
-  LoginRes.fromJson(Map<String, dynamic> json) {
+  LoginRsp.fromJson(Map<String, dynamic> json) {
     if (json["admin"] is bool) {
       admin = json["admin"];
     }
@@ -74,8 +74,8 @@ class LoginRes {
     }
   }
 
-  static List<LoginRes> fromList(List<Map<String, dynamic>> list) {
-    return list.map(LoginRes.fromJson).toList();
+  static List<LoginRsp> fromList(List<Map<String, dynamic>> list) {
+    return list.map(LoginRsp.fromJson).toList();
   }
 
   Map<String, dynamic> toJson() {
