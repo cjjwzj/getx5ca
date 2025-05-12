@@ -334,6 +334,7 @@ class AppTheme {
   }
 
   ThemeData theme(ColorScheme colorScheme) => ThemeData(
+        fontFamily: 'MiSans',
         useMaterial3: true,
         brightness: colorScheme.brightness,
         colorScheme: colorScheme,

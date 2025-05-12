@@ -7,39 +7,41 @@ class LoginPage extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const FlutterLogo(),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: 'username'.tr,
+    return controller.obx(
+      (state) => Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const FlutterLogo(),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'username'.tr,
+              ),
+              controller: controller.userNameController,
             ),
-            controller: controller.userNameController,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: 'password'.tr,
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'password'.tr,
+              ),
+              obscureText: true,
+              controller: controller.passwordController,
             ),
-            obscureText: true,
-            controller: controller.passwordController,
-          ),
-          TextButton(
-            onPressed: () {
-              controller.login();
-            },
-            child: Text('login'.tr),
-          ),
-          TextButton(
-            onPressed: () {
-              Get.toNamed('/user/register');
-            },
-            child: Text('register'.tr),
-          ),
-        ],
+            TextButton(
+              onPressed: () {
+                controller.doLogin();
+              },
+              child: Text('login'.tr),
+            ),
+            TextButton(
+              onPressed: () {
+                Get.toNamed('/user/register');
+              },
+              child: Text('register'.tr),
+            ),
+          ],
+        ),
       ),
     );
   }

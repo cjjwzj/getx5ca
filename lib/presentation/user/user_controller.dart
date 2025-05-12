@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx5_ca/services/setting_service.dart';
 
-class UserController extends GetxController {
+class UserController extends GetxController  {
   var themeModeIcon = (Get.isDarkMode ? Icons.dark_mode : Icons.light_mode).obs;
 
   @override

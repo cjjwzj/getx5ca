@@ -5,6 +5,7 @@ import 'package:getx5_ca/network/dto/req/login_req.dart';
 import 'package:getx5_ca/network/dto/rsp/login_rsp.dart';
 import 'package:getx5_ca/network/interceptors/my_request_interceptor.dart';
 import 'package:getx5_ca/network/interceptors/my_response_interceptor.dart';
+import 'package:getx5_ca/network/dto/rsp/article_rsp.dart';
 
 /// API客户端 - 基于GetX的Http实现，用于网络请求
 class WanApiService extends GetConnect implements GetxService {
@@ -62,7 +63,6 @@ class WanApiService extends GetConnect implements GetxService {
           errorMsg: wanApiBaseRsp.errorMsg,
         );
       }
-   
     }
     // 如果响应体不是预期的WanApiBaseRsp类型，返回错误
     return WanApiBaseRsp.error<T>(
@@ -70,6 +70,7 @@ class WanApiService extends GetConnect implements GetxService {
       errorMsg: '响应数据格式错误',
     );
   }
+
   /// 通用的解码方法，用于将WanApiBaseRsp<dynamic>转换为WanApiBaseRsp<T>
   ///
   /// @param response 原始响应对象，包含WanApiBaseRsp<dynamic>
@@ -125,5 +126,14 @@ class WanApiService extends GetConnect implements GetxService {
   Future<WanApiBaseRsp<List<BannerRsp>>> getBanner() async {
     final response = await get('/banner/json');
     return _decodeListRsp<BannerRsp>(response, BannerRsp.fromJson);
+  }
+
+  /// 获取首页文章列表
+  ///
+  /// @param page 页码，从0开始
+  /// @return 返回一个包含文章列表的WanApiBaseRsp对象
+  Future<WanApiBaseRsp<List<ArticleRsp>>> getArticleList(int page) async {
+    final response = await get('/article/list/$page/json');
+    return _decodeListRsp<ArticleRsp>(response, ArticleRsp.fromJson);
   }
 }

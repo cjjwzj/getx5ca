@@ -6,7 +6,7 @@ import 'package:getx5_ca/network/dto/rsp/banner_rsp.dart';
 import 'package:getx5_ca/services/wan_api_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class FirstPageController extends GetxController {
+class FirstPageController extends GetxController with StateMixin {
   final WanApiService _wanApiService = Get.find();
   Timer? _timer;
 
@@ -15,7 +15,7 @@ class FirstPageController extends GetxController {
   int _currentPage = 0;
 
   PageController pageViewController =
-      PageController(viewportFraction: 0.95); // 用于跟踪当前页面
+      PageController(viewportFraction: 0.8); // 用于跟踪当前页面
   @override
   void onInit() {
     super.onInit();
@@ -24,7 +24,7 @@ class FirstPageController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    queryBanner();
+    futurize(loadAllDatas);
   }
 
   @override
@@ -34,17 +34,24 @@ class FirstPageController extends GetxController {
     super.onClose();
   }
 
-  void queryBanner() async {
+  Future loadAllDatas() async {
+    return Future.wait([
+      queryBanner(),
+    ]);
+  }
+
+  Future queryBanner() async {
     var resp = await _wanApiService.getBanner();
     if (resp.data != null && resp.data!.isNotEmpty) {
       banners.value = resp.data!;
       _currentPage = 0; // 重置当前页面索引，如果需要从第一页开始
       // 开始轮播
-      loopBanner();
+      _loopBanner();
     }
+    return resp;
   }
 
-  void loopBanner() {
+  void _loopBanner() {
     // 如果之前有定时器，先取消，避免重复创建
     _timer?.cancel();
     // 确保 banners 不为空

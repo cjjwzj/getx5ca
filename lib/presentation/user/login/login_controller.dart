@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx5_ca/network/dto/req/login_req.dart';
+import 'package:getx5_ca/network/dto/rsp/login_rsp.dart';
+import 'package:getx5_ca/network/dto/wan_api_base_rsp.dart';
 import 'package:getx5_ca/services/setting_service.dart';
 import 'package:getx5_ca/services/wan_api_service.dart';
 
-class LoginController extends GetxController {
+class LoginController extends GetxController with StateMixin {
   final userNameController = TextEditingController(text: 'cjjwzj');
   final passwordController = TextEditingController(text: '1qaz2wsx');
 
   final WanApiService _apiService = Get.find();
 
-  void login() async {
+  @override
+  void onInit() {
+    super.onInit();
+    setSuccess(null);
+  }
+
+  void doLogin() {
+    futurize(login);
+  }
+
+  Future login() async {
+    /// TODO: 转移到表单规则中
     if (userNameController.text.isEmpty || passwordController.text.isEmpty) {
       Get.snackbar('error', 'username or password is empty');
       return;
@@ -19,6 +32,8 @@ class LoginController extends GetxController {
       username: userNameController.text,
       password: passwordController.text,
     );
+
+    // return _apiService.login(loginReq);
     final response = await _apiService.login(loginReq);
     if (response.isSuccess) {
       Get.find<SettingService>().user = response.data!.transformToUser();
@@ -26,21 +41,7 @@ class LoginController extends GetxController {
     } else {
       Get.snackbar('error', response.errorMsg);
     }
+
+    return response;
   }
-
-  // void login() {
-  //   if (userNameController.text.isEmpty || passwordController.text.isEmpty) {
-  //     Get.snackbar('error', 'username or password is empty');
-  //     return;
-  //   }
-  //   if (userNameController.text == 'admin' &&
-  //       passwordController.text == '123456') {
-  //     PrefsService prefsServices = Get.find();
-  //     prefsServices.setBool(PrefsKey.IS_LOGIN, true);
-
-  //     Get.toNamed('/home');
-  //   } else {
-  //     Get.snackbar('error', 'username or password is incorrect');
-  //   }
-  // }
 }
