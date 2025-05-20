@@ -52,7 +52,8 @@ class FirstPage extends GetView<FirstPageController> {
                       return ListTile(
                         leading: IconButton(
                           onPressed: () {},
-                          icon: const Icon(Icons.favorite),
+                          icon: const Icon(Icons.favorite,
+                              color: Colors.redAccent),
                         ),
                         title: Text(state.datas[index].title),
                         subtitle: Text(state.datas[index].desc ?? ''),
