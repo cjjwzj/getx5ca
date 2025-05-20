@@ -1,3 +1,60 @@
+/// 文章列表响应模型，包含分页信息和文章列表
+class ArticleListRsp {
+  final int curPage; // 当前页码
+  final int offset; // 列表数据在总数据中的起始位置
+  final bool over; // 是否已加载完所有数据 (true: 是, false: 否)
+  final int pageCount; // 总页数
+  final int size; // 每页数据量
+  final int total; // 总数据量
+  final List<ArticleRsp> datas; // 文章列表数据
+
+  ArticleListRsp({
+    required this.curPage,
+    required this.offset,
+    required this.over,
+    required this.pageCount,
+    required this.size,
+    required this.total,
+    required this.datas,
+  });
+
+  /// 创建一个所有属性为0或空的ArticleListRsp实例
+  ArticleListRsp.zero()
+      : curPage = 0,
+        offset = 0,
+        over = false,
+        pageCount = 0,
+        size = 0,
+        total = 0,
+        datas = [];
+
+  factory ArticleListRsp.fromJson(Map<String, dynamic> json) {
+    return ArticleListRsp(
+      curPage: json['curPage'] as int,
+      offset: json['offset'] as int,
+      over: json['over'] as bool,
+      pageCount: json['pageCount'] as int,
+      size: json['size'] as int,
+      total: json['total'] as int,
+      datas: (json['datas'] as List<dynamic>)
+          .map((e) => ArticleRsp.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'curPage': curPage,
+      'offset': offset,
+      'over': over,
+      'pageCount': pageCount,
+      'size': size,
+      'total': total,
+      'datas': datas.map((e) => e.toJson()).toList(),
+    };
+  }
+}
+
 /// 单个文章的数据模型
 class ArticleRsp {
   final int id;

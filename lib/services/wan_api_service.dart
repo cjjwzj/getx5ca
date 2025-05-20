@@ -6,6 +6,7 @@ import 'package:getx5_ca/network/dto/rsp/login_rsp.dart';
 import 'package:getx5_ca/network/interceptors/my_request_interceptor.dart';
 import 'package:getx5_ca/network/interceptors/my_response_interceptor.dart';
 import 'package:getx5_ca/network/dto/rsp/article_rsp.dart';
+import 'package:getx5_ca/network/dto/rsp/article_list_rsp.dart';
 
 /// API客户端 - 基于GetX的Http实现，用于网络请求
 class WanApiService extends GetConnect implements GetxService {
@@ -131,9 +132,9 @@ class WanApiService extends GetConnect implements GetxService {
   /// 获取首页文章列表
   ///
   /// @param page 页码，从0开始
-  /// @return 返回一个包含文章列表的WanApiBaseRsp对象
-  Future<WanApiBaseRsp<List<ArticleRsp>>> getArticleList(int page) async {
+  /// @return 返回一个包含文章列表和分页信息的WanApiBaseRsp对象
+  Future<WanApiBaseRsp<ArticleListRsp>> getArticleList(int page) async {
     final response = await get('/article/list/$page/json');
-    return _decodeListRsp<ArticleRsp>(response, ArticleRsp.fromJson);
+    return _decodeMapRsp<ArticleListRsp>(response, ArticleListRsp.fromJson);
   }
 }
