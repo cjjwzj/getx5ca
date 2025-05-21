@@ -131,10 +131,13 @@ class WanApiService extends GetConnect implements GetxService {
 
   /// 获取首页文章列表
   ///
-  /// @param page 页码，从0开始
+  /// @param currentPage 页码，从0开始
   /// @return 返回一个包含文章列表和分页信息的WanApiBaseRsp对象
-  Future<WanApiBaseRsp<ArticleListRsp>> getArticleList(int page) async {
-    final response = await get('/article/list/$page/json');
+  Future<WanApiBaseRsp<ArticleListRsp>> getArticleList(
+      int currentPage, int pageSize) async {
+    final queryParams = {'page_size': pageSize.toString()};
+    final response =
+        await get('/article/list/$currentPage/json', query: queryParams);
     return _decodeMapRsp<ArticleListRsp>(response, ArticleListRsp.fromJson);
   }
 }

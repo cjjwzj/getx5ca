@@ -56,8 +56,21 @@ class FirstPage extends GetView<FirstPageController> {
                               color: Colors.redAccent),
                         ),
                         title: Text(state.datas[index].title),
-                        subtitle: Text(state.datas[index].desc ?? ''),
-                        trailing: const Icon(Icons.more_horiz),
+                        subtitle: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text('作者:${state.datas[index].author ?? ''}'),
+                            const Text(" "),
+                            Text(
+                                '分类:${state.datas[index].superChapterName}/${state.datas[index].chapterName}'),
+                            const Text(" "),
+                            Text('时间:${state.datas[index].niceDate ?? ''}'),
+                          ],
+                        ),
+                        trailing: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.more_horiz),
+                        ),
                       );
                     },
                     separatorBuilder: (context, index) {
