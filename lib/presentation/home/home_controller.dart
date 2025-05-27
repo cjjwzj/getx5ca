@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx5_ca/data/models/user.dart';
 import 'package:getx5_ca/others/global_rx.dart';
 import 'package:getx5_ca/services/app_service.dart';
 
@@ -32,8 +33,11 @@ class HomeController extends GetxController
   }
 
   @override
-  void onReady() {
-    nickname.value = Get.find<AppService>().getUser()?.nickname ?? '';
+  void onReady() async {
+    final user = await Get.find<AppService>().getUser();
+    if (user != null) {
+      nickname.value = user.nickname;
+    }
   }
 
   void onTabChanged(int value) {

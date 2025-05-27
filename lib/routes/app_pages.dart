@@ -41,7 +41,7 @@ class AppPages {
       binding: RootBinding(),
       participatesInRootNavigator: true,
       middlewares: [
-        AuthMiddleware(),
+        AuthMiddleware()
       ],
     ),
     GetPage(

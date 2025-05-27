@@ -10,8 +10,8 @@ import 'package:getx5_ca/services/prefs_service.dart';
 class AppService extends GetxService {
   final PrefsService _prefs = Get.find();
 
-  User? getUser() {
-    final userJson = _prefs.getString(PrefsKey.USER_KEY);
+  Future<User?> getUser() async {
+    final userJson = await _prefs.getString(PrefsKey.USER_KEY);
     if (userJson != null) {
       return User.fromJson(jsonDecode(userJson));
     }
