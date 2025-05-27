@@ -72,7 +72,7 @@ class BannerState extends StateController<List<BannerRsp>> {
 class ArticleListState extends StateController<ArticleListRsp> {
   final WanApiService _wanApiService = Get.find();
   final int _pageSize = 10;
-  var _currentPage = 0;
+  final _currentPage = 0;
 
   @override
   onReady() {
@@ -82,7 +82,7 @@ class ArticleListState extends StateController<ArticleListRsp> {
 
   Future<ArticleListRsp> queryArticleList() async {
     var resp = await _wanApiService.getArticleList(_currentPage, _pageSize);
-    Get.log("resp: ${resp}");
+    Get.log("resp: $resp");
     if (resp.data != null) {
       setSuccess(resp.data!);
     }

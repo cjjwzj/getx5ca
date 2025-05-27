@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx5_ca/network/dto/req/login_req.dart';
-import 'package:getx5_ca/network/dto/rsp/login_rsp.dart';
-import 'package:getx5_ca/network/dto/wan_api_base_rsp.dart';
 import 'package:getx5_ca/services/setting_service.dart';
 import 'package:getx5_ca/services/wan_api_service.dart';
 

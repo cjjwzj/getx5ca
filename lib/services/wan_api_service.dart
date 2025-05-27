@@ -5,7 +5,6 @@ import 'package:getx5_ca/network/dto/req/login_req.dart';
 import 'package:getx5_ca/network/dto/rsp/login_rsp.dart';
 import 'package:getx5_ca/network/interceptors/my_request_interceptor.dart';
 import 'package:getx5_ca/network/interceptors/my_response_interceptor.dart';
-import 'package:getx5_ca/network/dto/rsp/article_rsp.dart';
 import 'package:getx5_ca/network/dto/rsp/article_list_rsp.dart';
 
 /// API客户端 - 基于GetX的Http实现，用于网络请求

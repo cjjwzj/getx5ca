@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx5_ca/presentation/home/first/first_controller.dart';
-import 'package:getx5_ca/presentation/home/first/first_status.dart';
 
 class FirstPage extends GetView<FirstPageController> {
   const FirstPage({super.key});
