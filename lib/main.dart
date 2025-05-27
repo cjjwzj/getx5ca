@@ -4,7 +4,7 @@ import 'package:getx5_ca/others/web_scroll_behavior.dart';
 import 'package:getx5_ca/routes/app_pages.dart';
 import 'package:getx5_ca/others/app_translations.dart';
 import 'package:getx5_ca/services/prefs_service.dart';
-import 'package:getx5_ca/services/setting_service.dart';
+import 'package:getx5_ca/services/app_service.dart';
 import 'package:getx5_ca/app_theme.dart';
 import 'package:getx5_ca/services/wan_api_service.dart';
 
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('zh', 'CN'), // 默认中文
       translations: AppTranslations(),
       binds: [
-        Bind.lazyPut(() => SettingService()),
+        Bind.lazyPut(() => AppService()),
         Bind.lazyPut(() => PrefsService()),
         Bind.lazyPut(() => WanApiService()),
       ],

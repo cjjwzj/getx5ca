@@ -1,60 +1,70 @@
 import 'package:get/get.dart';
 import 'package:get/get_instance/src/lifecycle.dart';
+import 'package:getx5_ca/others/constance.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefsService extends GetxService {
-  final SharedPreferencesAsync _prefs = SharedPreferencesAsync();
-
+  final Future<SharedPreferencesWithCache> _prefs =
+      SharedPreferencesWithCache.create(
+          cacheOptions: SharedPreferencesWithCacheOptions(
+              // This cache will only accept the key 'counter'.
+              allowList: PrefsKey.values.map((e) => e.name).toSet()));
+  late SharedPreferencesWithCache _cachePrefs;
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    _cachePrefs = await _prefs;
   }
 
-  Future<void> setString(String key, String value) async {
-    await _prefs.setString(key, value);
+  void setString(PrefsKey prefsKey, String value) {
+    _cachePrefs.setString(prefsKey.name, value);
   }
 
-  Future<String?> getString(String key) async {
-    return await _prefs.getString(key);
+  String? getString(PrefsKey prefsKey) {
+    return _cachePrefs.getString(prefsKey.name);
   }
 
-  Future<void> setBool(String key, bool value) async {
-    await _prefs.setBool(key, value);
+  void setBool(PrefsKey prefsKey, bool value) {
+    _cachePrefs.setBool(prefsKey.name, value);
   }
 
-  Future<bool?> getBool(String key) async {
-    return await _prefs.getBool(key);
+  bool? getBool(PrefsKey prefsKey) {
+    return _cachePrefs.getBool(prefsKey.name);
   }
 
-  Future<void> setInt(String key, int value) async {
-    await _prefs.setInt(key, value);
+  void setInt(PrefsKey prefsKey, int value) {
+    _cachePrefs.setInt(prefsKey.name, value);
   }
 
-  Future<int?> getInt(String key) async {
-    return await _prefs.getInt(key);
+  int? getInt(PrefsKey prefsKey) {
+    return _cachePrefs.getInt(prefsKey.name);
   }
 
-  Future<void> setDouble(String key, double value) async {
-    await _prefs.setDouble(key, value);
+  void setDouble(PrefsKey prefsKey, double value) {
+    _cachePrefs.setDouble(prefsKey.name, value);
   }
 
-  Future<double?> getDouble(String key) async {
-    return await _prefs.getDouble(key);
+  double? getDouble(PrefsKey prefsKey) {
+    return _cachePrefs.getDouble(prefsKey.name);
   }
 
-  Future<void> setList(String key, List<String> value) async {
-    await _prefs.setStringList(key, value);
+  void setList(PrefsKey prefsKey, List<String> value) {
+    _cachePrefs.setStringList(prefsKey.name, value);
   }
 
-  Future<List<String>?> getList(String key) async {
-    return await _prefs.getStringList(key);
+  List<String>? getList(PrefsKey prefsKey) {
+    return _cachePrefs.getStringList(prefsKey.name);
   }
 
-  Future<void> remove(String key) async {
-    await _prefs.remove(key);
+  void remove(PrefsKey prefsKey) {
+    _cachePrefs.remove(prefsKey.name);
   }
 
-  Future<void> clear() async {
-    await _prefs.clear();
+  void reload() {
+    _cachePrefs.reloadCache();
+  }
+
+  void clear() {
+    _cachePrefs.clear();
   }
 }

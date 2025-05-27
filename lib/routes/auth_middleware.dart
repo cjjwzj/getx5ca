@@ -10,7 +10,7 @@ class AuthMiddleware extends GetMiddleware {
     // await Future.delayed(Duration(milliseconds: 500));
 
     var isLogin =
-        await Get.find<PrefsService>().getBool(PrefsKey.IS_LOGIN) ?? false;
+        await Get.find<PrefsService>().getBool(PrefsKey.LOGIN_STATUS_KEY) ?? false;
     if (isLogin) {
       return RouteDecoder.fromRoute('/home');
     } else {

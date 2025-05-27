@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:getx5_ca/services/setting_service.dart';
+import 'package:getx5_ca/others/global_rx.dart';
+import 'package:getx5_ca/services/app_service.dart';
 
 class MyRouteInformationParser extends GetInformationParser {
   MyRouteInformationParser({required super.initialRoute});
@@ -22,7 +23,7 @@ class MyRouteInformationParser extends GetInformationParser {
     } else if (location.isEmpty) {
       location = initialRoute;
     }
-    Get.find<SettingService>().currentRoute.value = location;
+    GlobalRx.currentRoutePath.value = location;
 
     return super.parseRouteInformation(routeInformation);
   }

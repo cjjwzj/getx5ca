@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx5_ca/network/dto/req/login_req.dart';
-import 'package:getx5_ca/services/setting_service.dart';
+import 'package:getx5_ca/others/constance.dart';
+import 'package:getx5_ca/services/app_service.dart';
+import 'package:getx5_ca/services/prefs_service.dart';
 import 'package:getx5_ca/services/wan_api_service.dart';
 
 class LoginController extends GetxController with StateMixin {
@@ -34,7 +38,9 @@ class LoginController extends GetxController with StateMixin {
     // return _apiService.login(loginReq);
     final response = await _apiService.login(loginReq);
     if (response.isSuccess) {
-      Get.find<SettingService>().user = response.data!.transformToUser();
+      final user = response.data!.transformToUser();
+      Get.find<PrefsService>()
+          .setString(PrefsKey.USER_KEY, jsonEncode(user.toJson()));
       Get.toNamed('/home/first');
     } else {
       Get.snackbar('error', response.errorMsg);

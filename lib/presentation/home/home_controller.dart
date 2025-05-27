@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx5_ca/services/setting_service.dart';
+import 'package:getx5_ca/others/global_rx.dart';
+import 'package:getx5_ca/services/app_service.dart';
 
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -32,7 +33,7 @@ class HomeController extends GetxController
 
   @override
   void onReady() {
-    nickname.value = Get.find<SettingService>().user.nickname;
+    nickname.value = Get.find<AppService>().getUser()?.nickname ?? '';
   }
 
   void onTabChanged(int value) {
@@ -47,8 +48,7 @@ class HomeController extends GetxController
   }
 
   void listenRouteChange() {
-    var currentRoute = Get.find<SettingService>().currentRoute;
-    ever(currentRoute, (value) {
+    ever(GlobalRx.currentRoutePath, (value) {
       if (value.contains('/home/first')) {
         tabController.animateTo(0);
       } else if (value.contains('/home/harmony')) {

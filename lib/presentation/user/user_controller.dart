@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx5_ca/services/setting_service.dart';
+import 'package:getx5_ca/services/app_service.dart';
 
-class UserController extends GetxController  {
+class UserController extends GetxController {
   var themeModeIcon = (Get.isDarkMode ? Icons.dark_mode : Icons.light_mode).obs;
 
   @override
@@ -11,7 +11,7 @@ class UserController extends GetxController  {
   }
 
   void changeThemeMode() {
-    Get.find<SettingService>().changeThemeMode();
+    Get.find<AppService>().changeThemeMode();
     themeModeIcon.value = themeModeIcon.value == Icons.light_mode
         ? Icons.dark_mode
         : Icons.light_mode;

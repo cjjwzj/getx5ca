@@ -1,10 +1,15 @@
-abstract class Constance {
-  static const String appName = 'app_name';
-  static const String appVersion = 'app_version';
-  static const String appBuildNumber = 'app_build_number';
+// ignore_for_file: constant_identifier_names
+
+import 'package:flutter/services.dart';
+
+enum ConfigKey {
+  APP_NAME_KEY,
+  APP_VERSION_KEY,
+  APP_BUILD_NUM_KEY,
 }
 
-abstract class PrefsKey {
-  static const String TOKEN_KEY = 'token_key';
-  static const String IS_LOGIN = 'is_login';
+enum PrefsKey {
+ TOKEN_KEY,
+ LOGIN_STATUS_KEY,
+ USER_KEY,
 }
